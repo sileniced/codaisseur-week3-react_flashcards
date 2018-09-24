@@ -1,18 +1,42 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, {PureComponent} from 'react';
 import './App.css';
+import {Header} from "./Components/Header";
+import {Intro} from "./Components/Intro";
+import {Category} from "./Components/Category";
+import {cards} from "./data/cards";
 
-class App extends Component {
+class App extends PureComponent {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      category: null,
+      cards
+    }
+  }
+
+  handleCategoryClick(category) {
+    this.setState({category});
+  }
+
+  flashCard = <FlashCard />;
+
+  categories = <div className={'Categories'}>
+    {this.state.cards.categories.map((category, index) =>
+      <Category
+        key={index}
+        onClick={() => this.handleCategoryClick(category.name)}
+        category={category.name}
+      />
+    )}
+  </div>;
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Header/>
+        <Intro/>
+        {this.state.category ? this.flashCard : this.categories}
       </div>
     );
   }
