@@ -17,9 +17,12 @@ class FlashCard extends PureComponent{
   }
 
   render() {
-    return <div className={'FlashCard'} onClick={() => this.handleClick() }>
+    return <button
+      className={`FlashCard ${this.state.isFront ? 'front' : 'back'}`}
+      onClick={() => this.handleClick()}
+    >
       {this.state.isFront ? this.props.card.question : this.props.card.answer }
-    </div>
+    </button>
   }
 }
 

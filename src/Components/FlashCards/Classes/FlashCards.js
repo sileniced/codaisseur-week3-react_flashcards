@@ -23,7 +23,9 @@ class FlashCards extends PureComponent {
   }
 
   render() {
-    return <FlashCard card={this.getCard()} />
+    return <div className={'FlashCards'}>
+      <FlashCard card={this.getCard()} />
+    </div>
   }
 }
 
