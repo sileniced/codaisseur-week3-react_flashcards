@@ -19,6 +19,12 @@
   font-size: large;
 }
 
+.FlashCards-Wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .Categories, .FlashCards {
   display: flex;
   flex-wrap: wrap;
@@ -30,8 +36,8 @@
   align-items: center;
 }
 
-.Category, .FlashCard, .NextCard {
-  width: 40%;
+.Category, .FlashCard, .NextCard, .BackToCategories {
+  width: 600px;
   height: 300px;
   text-align: center;
   border-radius: 40px;
@@ -59,8 +65,16 @@
 }
 
 .NextCard {
-  width: 10%;
+  width: 300px;
   height: 100px;
   border-radius: 20px;
   color: gray;
+}
+
+.BackToCategories {
+  font-size: medium;
+  width: 20%;
+  height: 50px;
+  border-radius: 10px;
+  background-color: lightcoral;
 }

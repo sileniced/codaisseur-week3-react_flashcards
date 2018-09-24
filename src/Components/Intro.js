@@ -1,7 +1,12 @@
 import React from "react";
+import * as PropTypes from "prop-types";
 
-export function Intro() {
+export function Intro(props) {
   return <p className="Intro">
-    Don't forget to train with flashcards on the daily! DAILY I TELL YOU!
+    {props.title}
   </p>;
 }
+
+Intro.propTypes = {
+  title: PropTypes.string
+};

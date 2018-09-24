@@ -2,11 +2,13 @@ import React, {PureComponent} from 'react';
 
 import FlashCards from "./Components/FlashCards/Classes/FlashCards";
 
-import {Header} from "./Components/Header";
 import {Intro} from "./Components/Intro";
+import {BackToCategories} from "./Components/BackToCategories";
 import {Category} from "./Components/Categories/Category";
 
 import {cards} from "./data/cards";
+
+import {shuffle} from "./statics/Statics";
 
 import './App.css';
 
@@ -24,8 +26,15 @@ class App extends PureComponent {
     this.setState({category});
   }
 
+  handleBackToCategoriesClick() {
+    this.setState({category: null})
+  }
+
   renderFlashCards() {
-    return <FlashCards cards={this.state.cards.categories[this.state.category].cards}/>;
+    return <div className={'FlashCards-Wrapper'}>
+      <BackToCategories onClick={() => this.handleBackToCategoriesClick()}/>
+      <FlashCards cards={shuffle(this.state.cards.categories[this.state.category].cards)}/>
+    </div>;
   }
 
   renderCategories() {
@@ -43,8 +52,10 @@ class App extends PureComponent {
   render() {
     return (
       <div className="App">
-        <Header title={this.state.category ? this.state.cards.categories[this.state.category].name : 'Cards of the flashing variant'}/>
-        <Intro/>
+        <header className="Header">
+          <h1 className="Title">Cards of the flashing variant</h1>
+        </header>
+        <Intro title={this.state.category ? this.state.cards.categories[this.state.category].name : 'Don\'t forget to train with flashcards on the daily! DAILY I TELL YOU!'}/>
         {this.state.category ? this.renderFlashCards() : this.renderCategories()}
       </div>
     );
